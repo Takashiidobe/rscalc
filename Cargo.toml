@@ -1,0 +1,29 @@
+[package]
+name = "rscalc"
+version = "0.0.1"
+edition = "2018"
+default-run = "rscalc"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/takashiidobe/rscalc"
+documentation = "https://docs.rs/rscalc"
+description = "A cli calculator in Rust"
+
+[dependencies]
+nom = "7.0.0"
+rustyline = "9.0.0"
+man = { version = "0.3.0", optional = true }
+
+[[bin]]
+name = "man"
+path = "src/build.rs"
+required-features = ["build_deps"]
+
+[features]
+build_deps = ["man"]
+
+[profile.release]
+opt-level = "z"
+codegen-units = 1
+panic = "abort"
+
